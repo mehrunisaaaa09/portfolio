@@ -1,0 +1,107 @@
+.playground {
+  background: var(--surface);
+}
+
+.playground__blob {
+  width: 340px;
+  height: 340px;
+  bottom: -140px;
+  right: -120px;
+  background: var(--yellow);
+  opacity: 0.4;
+}
+
+.playground__heading {
+  max-width: 620px;
+  margin-bottom: 64px;
+  position: relative;
+  z-index: 1;
+}
+
+.playground__intro {
+  margin-top: 20px;
+  color: var(--muted);
+  font-size: 1.05rem;
+  max-width: 440px;
+}
+
+.playground__grid {
+  position: relative;
+  z-index: 1;
+  columns: 3 220px;
+  column-gap: 22px;
+}
+
+.playground__item {
+  margin: 0 0 22px;
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  break-inside: avoid;
+  transform: rotate(var(--rotate, 0deg));
+  transition: transform 0.35s ease;
+}
+
+.playground__item:hover {
+  transform: rotate(0deg) translateY(-4px);
+  z-index: 2;
+}
+
+/* Each frame's height comes from its own photo/clip proportions
+   (--ratio = real width / height) instead of a generic tall/small/wide
+   box, so nothing gets cropped or squeezed. */
+.playground__item .media-frame {
+  width: 100%;
+  height: auto;
+  aspect-ratio: var(--ratio, 4 / 5);
+}
+
+.playground__caption {
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  bottom: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.playground__item:hover .playground__caption {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.playground__caption-title {
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.92);
+  font-size: 0.78rem;
+  font-weight: 600;
+  backdrop-filter: blur(4px);
+}
+
+.playground__caption-tag {
+  font-size: 0.72rem;
+  padding: 6px 12px;
+}
+
+@media (max-width: 960px) {
+  .playground__grid {
+    columns: 2 220px;
+  }
+}
+
+@media (max-width: 560px) {
+  .playground__grid {
+    columns: 1;
+  }
+
+  .playground__caption {
+    opacity: 1;
+    transform: none;
+  }
+}

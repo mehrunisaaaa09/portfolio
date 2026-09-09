@@ -1,0 +1,285 @@
+/* ============================================================
+   DESIGN TOKENS
+   Edit these variables to re-theme the entire site.
+   ============================================================ */
+:root {
+  /* colors */
+  --bg: #FFF9F4;
+  --surface: #FFFFFF;
+  --text: #2F2927;
+  --muted: #756B68;
+  --pink: #EFB7C8;
+  --blush: #F6D6D6;
+  --peach: #F8D8C0;
+  --mint: #D7EBDD;
+  --yellow: #F7E7A9;
+  --lavender: #DDD6F3;
+  --border: rgba(47, 41, 39, 0.12);
+  --border-strong: rgba(47, 41, 39, 0.22);
+  --shadow-soft: 0 20px 40px -24px rgba(47, 41, 39, 0.25);
+
+  /* type */
+  --font-serif: 'Playfair Display', 'Iowan Old Style', 'Georgia', serif;
+  --font-sans: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  /* layout */
+  --container: 1220px;
+  --section-pad: 128px;
+  --gutter: clamp(24px, 6vw, 72px);
+  --radius-lg: 28px;
+  --radius-md: 18px;
+  --radius-sm: 12px;
+}
+
+/* ============================================================
+   RESET
+   ============================================================ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+h1, h2, h3, h4 {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+}
+
+p {
+  margin: 0;
+}
+
+::selection {
+  background: var(--pink);
+  color: var(--text);
+}
+
+/* Visible keyboard focus everywhere */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ============================================================
+   LAYOUT UTILITIES
+   ============================================================ */
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+.section {
+  position: relative;
+  padding: var(--section-pad) 0;
+  overflow: hidden;
+}
+
+@media (max-width: 900px) {
+  :root {
+    --section-pad: 88px;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --section-pad: 64px;
+  }
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.eyebrow::before {
+  content: '';
+  width: 22px;
+  height: 1px;
+  background: var(--text);
+  opacity: 0.4;
+}
+
+.section-heading {
+  font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+  margin-top: 18px;
+}
+
+.section-heading em {
+  font-style: italic;
+  color: var(--muted);
+}
+
+/* Pastel pill tag, used for skills, identity tags, etc. */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 18px;
+  border-radius: 999px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text);
+}
+
+.pill--pink { background: var(--blush); border-color: transparent; }
+.pill--mint { background: var(--mint); border-color: transparent; }
+.pill--peach { background: var(--peach); border-color: transparent; }
+.pill--yellow { background: var(--yellow); border-color: transparent; }
+.pill--lavender { background: var(--lavender); border-color: transparent; }
+.pill--blush { background: var(--blush); border-color: transparent; }
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 15px 30px;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  border: 1px solid transparent;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+  white-space: nowrap;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+}
+
+.btn-primary {
+  background: var(--pink);
+  color: var(--text);
+  box-shadow: 0 14px 30px -16px rgba(239, 183, 200, 0.9);
+}
+
+.btn-primary:hover {
+  box-shadow: 0 18px 34px -14px rgba(239, 183, 200, 1);
+}
+
+.btn-secondary {
+  background: transparent;
+  border-color: var(--border-strong);
+  color: var(--text);
+}
+
+.btn-secondary:hover {
+  background: var(--surface);
+  box-shadow: var(--shadow-soft);
+}
+
+.btn-icon {
+  width: 18px;
+  height: 18px;
+}
+
+/* Scroll-reveal utility, toggled by the useScrollReveal hook */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* Decorative freeform blob, colored via inline style / class */
+.blob {
+  position: absolute;
+  border-radius: 42% 58% 63% 37% / 41% 44% 56% 59%;
+  filter: blur(0.5px);
+  z-index: 0;
+}
+
+.dot {
+  position: absolute;
+  border-radius: 50%;
+}
+
+.no-scroll {
+  overflow: hidden;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

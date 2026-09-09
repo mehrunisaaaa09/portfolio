@@ -1,0 +1,230 @@
+.projects__heading {
+  max-width: 640px;
+  margin-bottom: 90px;
+}
+
+.projects__list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.project {
+  padding: 64px 0;
+  border-top: 1px solid var(--border);
+}
+
+.project:last-child {
+  border-bottom: 1px solid var(--border);
+}
+
+/* --- Standard project row --- */
+.project__row {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: clamp(28px, 5vw, 64px);
+  align-items: center;
+}
+
+.project__media {
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+}
+
+.project__media .media-frame,
+.project__featured-media .media-frame {
+  height: 100%;
+}
+
+.project:hover .media-frame img {
+  transform: scale(1.045);
+}
+
+.project__number {
+  display: block;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--muted);
+  margin-bottom: 14px;
+}
+
+.project__heading-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.project__title {
+  font-size: clamp(1.6rem, 2.6vw, 2.1rem);
+  transition: transform 0.3s ease;
+}
+
+.project:hover .project__title {
+  transform: translateX(4px);
+}
+
+.project__arrow {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 1px solid var(--border-strong);
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.project:hover .project__arrow {
+  transform: translate(3px, -3px);
+  background: var(--pink);
+}
+
+.project__category {
+  margin-top: 16px;
+}
+
+.project__description {
+  margin-top: 18px;
+  color: var(--muted);
+  font-size: 1rem;
+  line-height: 1.7;
+  max-width: 480px;
+}
+
+.project__tools {
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
+.project__tools li {
+  padding: 6px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+}
+
+/* --- Large photo section under a standard project row --- */
+.project__gallery {
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  align-items: start;
+}
+
+.project__gallery .media-frame--cover {
+  aspect-ratio: 16 / 10;
+}
+
+.project:hover .project__gallery .media-frame img {
+  transform: scale(1.03);
+}
+
+/* --- Featured (Mumbels) showcase --- */
+.project--featured {
+  grid-template-columns: 1fr;
+  gap: 0;
+  padding: 0 0 80px;
+  border-top: none;
+}
+
+.project__featured-copy {
+  max-width: 760px;
+}
+
+.project__title--lg {
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  margin-top: 16px;
+}
+
+.project__featured-gallery {
+  margin-top: 32px;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.project__featured-gallery .media-frame {
+  aspect-ratio: 3 / 4;
+}
+
+.project--featured:hover .media-frame img {
+  transform: scale(1.03);
+}
+
+/* Full, uncropped screenshots (e.g. Cardivision AI) shown at their own
+   natural proportions instead of being cropped into a fixed box.
+   Each frame is sized from its real image proportions and shares a
+   common height, so a tall screenshot and a wide one still line up. */
+.project__featured-screens {
+  margin-top: 32px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 24px;
+}
+
+.project__featured-screens .media-frame--contain {
+  aspect-ratio: auto;
+  height: 380px;
+  flex: 0 1 auto;
+}
+
+.project__featured-screens .media-frame--contain img {
+  width: auto;
+  height: 100%;
+  max-width: 100%;
+}
+
+.project__arrow-link {
+  margin-top: 32px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--text);
+}
+
+@media (max-width: 860px) {
+  .project__row {
+    grid-template-columns: 1fr;
+  }
+
+  .project__featured-gallery {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .project__featured-screens {
+    flex-direction: column;
+  }
+
+  .project__featured-screens .media-frame--contain {
+    height: auto;
+    width: 100%;
+  }
+
+  .project__featured-screens .media-frame--contain img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .project__featured-gallery {
+    grid-template-columns: 1fr;
+  }
+
+  .project__gallery {
+    grid-template-columns: 1fr;
+  }
+}
